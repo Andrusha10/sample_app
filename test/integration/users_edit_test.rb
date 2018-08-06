@@ -7,7 +7,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   test "unsuccessful edit" do
-  	log_in_as(@user)
+    log_in_as(@user)
     get edit_user_path(@user)
     assert_template 'users/edit'
     patch user_path(@user), params: { user: { name:  "",
@@ -15,10 +15,9 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                                               password:              "foo",
                                               password_confirmation: "bar" } }
 
-
-    assert_select "div.alert", "The form contains 4 errors."
     assert_template 'users/edit'
   end
+
   test "successful edit with friendly forwarding" do
     get edit_user_path(@user)
     log_in_as(@user)
